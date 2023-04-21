@@ -10,16 +10,17 @@ const ShowWallet =(req, res)=>{
             if(results.length){
 
 
-                res.json(results)
-                console.log(results)
+               return res.status(200).json({msg:results})
+      
 
             }
             else{
 
-                // res.json({msg:"Nothing to Show"})
+              
+                res.status(200).json({msg:4});
             }
 
-
+ 
 
         })
 

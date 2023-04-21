@@ -1,9 +1,9 @@
 const connection = require('../../Connection')
 
-const ShowTradeHistoryController =(req, res)=>{
+const ShowTransactionController =(req, res)=>{
 
 
-        let sql = `SELECT * FROM transactionhistory WHERE UserId = "${req.token.userid}"`
+        let sql = `SELECT * FROM payments WHERE UserId = "${req.token.userid}"`
 
         connection.query(sql , (err , results)=>{
 
@@ -29,4 +29,4 @@ const ShowTradeHistoryController =(req, res)=>{
 
 }
 
-module.exports = ShowTradeHistoryController;
+module.exports = ShowTransactionController;

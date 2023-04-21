@@ -4,8 +4,10 @@ const BuyCoinController =(req, res)=>{
   // symbol = "btc"
   // quantity = 50
 
+console.log("BUYCOIN CONTROLLER HERE !!!!!!!!!!!!!!!!!!!!")
+
   symbol = req.body.currency
-  quantity = req.body.amount
+  quantity = req.body.inputdata
 
   var sql = `SELECT * FROM wallet WHERE Userid ='${req.token.userid}'  AND currency ='${symbol}'`;
 

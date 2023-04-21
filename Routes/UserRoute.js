@@ -75,21 +75,31 @@ const AvblSellController = require('../Controllers/Users/AvblSellController')
 const OrderBookController = require('../Controllers/Users/OrderBookController')
 const OpenOrdersController = require('../Controllers/Users/OpenOrdersController')
 const CheckVerifiedController = require('../Controllers/Users/CheckVerifiedController')
+const GetAvailableCoinListController = require('../Controllers/Users/GetAvailableCoinListController')
+const CreateWalletAddressesController = require('../Controllers/Users/CreateWalletAddressesController')
+const AddressQrcodeGenController = require('../Controllers/Users/AddressQrcodeGenController')
+const AddrsToReactController = require('../Controllers/Users/AddrsToReactController')
+const GetReferralDataController = require('../Controllers/Users/GetReferralDataController')
+const ShowTransactionController = require('../Controllers/Users/ShowTransactionController')
+const CheckingPaymentLoopController = require('../Controllers/Users/CheckingPaymentLoopController')
+
 
 // ============================Middlewares=================================
 const Authjwt = require('../Middlewares/Authjwt');
 const verifyPay = require('../Middlewares/verifyPay');
 const Google2FAController = require('../Controllers/Users/Google2FAController');
 const Google2FAVerifyController = require('../Controllers/Users/Google2FAVerifyController');
+const UserProfileController = require('../Controllers/Users/UserProfileController');
 
 //============================= Routes=====================================
 
 
 router.get('/getcoin',CoinOfflineController)
-router.post('/adduser',adduserController)
+router.post('/adduser',adduserController,CreateWalletAddressesController)
 router.post('/login',loginController)
 router.post('/test',Sendverification)
 router.post('/VerifyUser',Authjwt,VerifyUser)
+router.post('/addrstoreact',Authjwt,AddrsToReactController)
 
 
 
@@ -107,6 +117,7 @@ router.post('/limit' ,Authjwt, LimitController,LimitNextController)
 router.post('/userkyc' ,Authjwt,upload.single('image'), Userkyc)
 router.get('/logout' ,Authjwt, LogOutController)
 router.get('/checklogin' ,Authjwt, CheckLoginController)
+router.get('/getavailablecoinlist' ,Authjwt, GetAvailableCoinListController)
 
 
 // Widthrawal
@@ -123,7 +134,10 @@ router.get('/customdata' , CustomCoinController)
 router.post('/addmoney',Authjwt,payment, BuyCoinController)
 router.post('/cnpay',Authjwt,ConfirmPaymentController)
 router.post('/pay',Authjwt,TestController, TradeHistoryController)
-router.post('/callback',Authjwt,CallBackController)
+router.post('/callback', Authjwt, CallBackController)
+router.post('/createaddr',CreateWalletAddressesController)
+router.post('/addresstoqrcode',AddressQrcodeGenController)
+router.post('/checkpaymentloop',Authjwt,CheckingPaymentLoopController, BuyCoinController)
 
 
 router.post('/verifyPay',Authjwt,verifyPay)
@@ -136,10 +150,13 @@ router.get('/showtrade',Authjwt,ShowTradeHistoryController)
 router.get('/showwallet',Authjwt,ShowWallet)
 router.get('/Showtotal',Authjwt,Showtotal)
 router.get('/testpp', Authjwt, TestPurpose)
+router.get('/ShowTransactionController', Authjwt, ShowTransactionController)
 
 
 
 router.get('/checkverified', Authjwt, CheckVerifiedController)
+router.get('/userprofile', Authjwt, UserProfileController)
+
 
 
 // Google 2FA
@@ -147,7 +164,7 @@ router.post('/api/2fa/setup',Authjwt,Google2FAController)
 router.post('/api/2fa/verify',Authjwt,Google2FAVerifyController)
 
 
-
-
+// Referral Route
+router.get('/getreferraldata', Authjwt, GetReferralDataController)
 
 module.exports = router;

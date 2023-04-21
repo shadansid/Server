@@ -132,7 +132,7 @@ const SellCoinController = async (req, res)=>{
                         console.log("histry add hogyi");
                         return res.json({
                           status: 200,
-                          msg: "Payment Success",
+                          msg: "Trade Success",
                         });
                       });
                     } else {
@@ -160,7 +160,7 @@ const SellCoinController = async (req, res)=>{
                           console.log("histry add hogyi");
                           return res.json({
                             status: 200,
-                            msg: "Payment Success",
+                            msg: "Trade Success",
                           });
                         });
                       });
@@ -283,7 +283,7 @@ const SellCoinController = async (req, res)=>{
                                 connection.query(TH,(err, results)=>{
                                     if(err) throw err;
                                     console.log("histry add hogyi")
-                                    return res.json({status:200,msg:"Payment Success"})
+                                    return res.json({status:200,msg:"Trade Success"})
                                 
                                 
                                 })

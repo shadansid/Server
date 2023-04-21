@@ -41,7 +41,14 @@ const loginController = async (req,res)=>{
 
 
 
-                 res.status(200).json({status: 200, accesstoken:accesstoken})
+                res.status(200).json({ status: 200, accesstoken: accesstoken })
+                
+
+                connection.query(`UPDATE users SET lastlogin = CURRENT_TIMESTAMP WHERE email = '${email}'`, (rr, esss) => {
+                  if(rr) throw error;
+                    console.log('last login ')
+
+                })
                
               }
               else {
